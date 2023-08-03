@@ -10,9 +10,9 @@ graph   train https://drive.google.com/file/d/1iqF9IhdQS9ICKpkjnoFgTIMwa-ULtSGx/
 '''
 
 
-DATA_KEYS=dict(image:   dict(train='130Lm_4K2cCclnmOEZlVIBKKPkJUn3k3f',test='1L2yjBkzL3Ruaf8HuaMDR5PC9nETG5t_i'),
-               segment: dict(train='1YOmIt3hMc3vViH5oZ8TRnQUBrBW7rocW',test='1Q-86MIsKf7ZQxE-9_vZKVPM7FKMI15L6'),
-               graph:   dict(train='1iqF9IhdQS9ICKpkjnoFgTIMwa-ULtSGx',test='16j9m8kc6gXs_3qbB-Ta2xEPTwdQTh0r3'),
+DATA_KEYS=dict(image   = dict(train='130Lm_4K2cCclnmOEZlVIBKKPkJUn3k3f',test='1L2yjBkzL3Ruaf8HuaMDR5PC9nETG5t_i'),
+               segment = dict(train='1YOmIt3hMc3vViH5oZ8TRnQUBrBW7rocW',test='1Q-86MIsKf7ZQxE-9_vZKVPM7FKMI15L6'),
+               graph   = dict(train='1iqF9IhdQS9ICKpkjnoFgTIMwa-ULtSGx',test='16j9m8kc6gXs_3qbB-Ta2xEPTwdQTh0r3'),
                )
 
 def main(challenge,flavor):
@@ -25,11 +25,11 @@ def main(challenge,flavor):
 
     key = DATA_KEYS[challenge][flavor]
     
-
-    cmd = '''wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=%s' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=%s" -O if-%s-%s.h5''' % (key,key,challenge,flavor)
-
+    cmd = 'gdown %s' % key
     import os
     os.system(cmd)
 
-    
+if __name__ == '__main__':
+    import fire
+    fire.Fire(main)
 

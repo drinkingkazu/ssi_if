@@ -141,8 +141,10 @@ class ShowerFeatures(GraphDataset):
             self._file_handle = None
             
     def __len__(self):
-        
         return self._entries
+
+    def len(self):
+        return len(self._entries)
 
     def __getitem__(self, idx):
         
@@ -162,3 +164,6 @@ class ShowerFeatures(GraphDataset):
                          y = node_labels,
                          edge_label = edge_labels,
                          index = idx)
+
+    def get(self,idx):
+        return self[idx]
